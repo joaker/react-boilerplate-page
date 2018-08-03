@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const prettierOptions = JSON.parse(fs.readFileSync('./.prettierrc', 'utf8'));
+const parentModules = require('./.parentModules');
 
 module.exports = {
   parser: 'babel-eslint',
@@ -29,7 +30,12 @@ module.exports = {
     'import/no-dynamic-require': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-named-as-default': 0,
-    'import/no-unresolved': 1, //2,
+    'import/no-unresolved': [
+      2,
+      {
+        ignore: parentModules,
+      },
+    ],
     'import/no-webpack-loader-syntax': 0,
     'import/prefer-default-export': 0,
     indent: [
@@ -63,14 +69,9 @@ module.exports = {
     'redux-saga/no-yield-in-race': 2,
     'redux-saga/yield-effects': 2,
     'require-yield': 0,
-    'import/extensions': 1,
+    'import/extensions': 'ignorePackages',
   },
   settings: {
-    // TODO: get a good webpack ref here (or maybe use globals?)
-    // 'import/resolver': {
-    //   webpack: {
-    //     config: './internals/webpack/webpack.prod.babel.js',
-    //   },
-    // },
+    'import/ignore': parentModules,
   },
 };
