@@ -11,9 +11,6 @@ const selectDomain = state => state.get(domain, initialState);
 const makeSelectMessage = () =>
   createSelector(selectDomain, state => state.get('message'));
 
-export {
-  selectDomain,
-  makeSelectMessage,
-};
+export { selectDomain, makeSelectMessage };
 
 export default makeSelectMessage;

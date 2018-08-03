@@ -13,26 +13,18 @@ import PropTypes from 'prop-types';
  */
 import H1 from 'components/H1';
 
-
 /*
  * local imports - local references
  */
 import messages from './messages';
-import {
-  DOMAIN as domain,
-} from './constants';
-import reducer from './reducer';
-import saga from './saga';
-
 
 export class ExamplePage extends React.Component {
-  
   componentWillMount() {
     this.props.loadMessage();
   }
 
   render() {
-    const message = this.props.message;
+    const { message } = this.props;
     return (
       <div>
         <Helmet>
@@ -45,23 +37,23 @@ export class ExamplePage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
+        <p>{message}</p>
         <p>
-          {message}
+          <button onClick={this.props.setHashUser}>
+            Click me to use the hash route as user
+          </button>
         </p>
-        <p>
-          <button onClick={this.props.setHashUser}>Click me to use the hash route as user</button>
-        </p>
-        <p>
-          User: '{this.props.username}'
-        </p>
+        <p>User: &quot;{this.props.username}&quot;</p>
       </div>
     );
   }
 }
 
 ExamplePage.propTypes = {
-  loadMessage: PropTypes.func,
-  
-}
+  message: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  loadMessage: PropTypes.func.isRequired,
+  setHashUser: PropTypes.func.isRequired,
+};
 
 export default ExamplePage;

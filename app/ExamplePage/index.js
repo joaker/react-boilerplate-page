@@ -20,9 +20,7 @@ import { makeSelectUsername } from 'containers/HomePage/selectors';
 /*
  * local imports - local references
  */
-import {
-  DOMAIN as domain,
-} from './constants';
+import { DOMAIN as domain } from './constants';
 import { loadMessage } from './actions';
 import makeSelectMessage from './selectors';
 import reducer from './reducer';
@@ -35,9 +33,9 @@ const mapState = createStructuredSelector({
 });
 
 const getHashUser = (defaultUser = 'joaker') => {
-  const hashName = window.location.hash.slice(1) || 'joaker';
-  return hashName;  
-}
+  const hashName = window.location.hash.slice(1) || defaultUser;
+  return hashName;
+};
 
 export function mapDispatch(dispatch) {
   const name = getHashUser();

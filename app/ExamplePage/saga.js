@@ -1,22 +1,28 @@
 /**
- * Gets the repositories of the user from Github
+ * Global imports
  */
+import { call, put, takeLatest } from 'redux-saga/effects';
 
-import {
-  call,
-  put,
-  takeLatest,
-} from 'redux-saga/effects';
+/**
+ * Parent imports
+ */
+import createLog from 'utils/createLog';
 
-import {
-  LOAD_MESSAGE,
-} from './constants';
-import {
-  setMessage,
-} from './actions';
+/**
+ * Local imports
+ */
+import { LOAD_MESSAGE } from './constants';
+import { setMessage } from './actions';
 
-// import request from 'utils/request';
+const log = createLog('EP Saga > ');
+
+/**
+ * request - a mock request function
+ *
+ * @return {Promise} A promise that will yield a message
+ */
 const request = () => Promise.resolve('A fancy message, as if from an API');
+// import request from 'utils/request';
 
 /**
  * Load a message into the reducer (silly saga)
@@ -25,11 +31,11 @@ export function* loadMessage() {
   // Select username from store
   try {
     // Call our request helper (see 'utils/request')
-    const requestURL = 'http://server.com/path/to/api'
+    const requestURL = 'http://server.com/path/to/api';
     const message = yield call(request, requestURL);
     yield put(setMessage(message));
   } catch (err) {
-    console.log('bad times: ', err);
+    log('bad times: ', err);
   }
 }
 

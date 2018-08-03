@@ -1,7 +1,4 @@
-import {
-    LOAD_MESSAGE,
-    SET_MESSAGE,
-} from './constants';
+import { LOAD_MESSAGE, SET_MESSAGE } from './constants';
 
 /**
  * Load the message for the example page
